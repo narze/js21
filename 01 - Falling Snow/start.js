@@ -31,9 +31,19 @@
     canvasContext.fill()
   }
 
-  function moveSnowFlake(snowFlake) {
+  function moveSnowFlake(canvas, snowFlake) {
     snowFlake.x += snowFlake.speedX
     snowFlake.y += snowFlake.speedY
+
+    if (snowFlake.x > canvas.width) {
+      snowFlake.x = 0
+    } else if (snowFlake.x < 0) {
+      snowFlake.x = canvas.width
+    }
+
+    if (snowFlake.y > canvas.height) {
+      snowFlake.y = 0
+    }
   }
 
   function random(min, max) {
@@ -49,7 +59,7 @@
     setInterval(() => {
       canvasContext.clearRect(0, 0, canvas.width, canvas.height)
       snowFlakes.forEach((snowFlake) => drawSnowFlake(canvasContext, snowFlake))
-      snowFlakes.forEach((snowFlake) => moveSnowFlake(snowFlake))
+      snowFlakes.forEach((snowFlake) => moveSnowFlake(canvas, snowFlake))
     }, 50)
   }
 
