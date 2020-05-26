@@ -11,21 +11,20 @@
 
   function countdown() {
     const now = new Date().getTime()
-    const newYear = new Date("December 31, 2020 23:59:59").getTime()
-    const unixTimeLeft = newYear - now
+    const newYear = new Date("January 1, 2021").getTime()
+    const diff = newYear - now
 
-    setElementInnerText("days", Math.floor(unixTimeLeft / DAY))
-    setElementInnerText("hours", Math.floor(unixTimeLeft % DAY / HOUR))
-    setElementInnerText("minutes", Math.floor(unixTimeLeft % HOUR / MINUTE))
-    setElementInnerText("seconds", Math.floor(unixTimeLeft % MINUTE / SECOND))
+    setElementInnerText("days", Math.floor(diff / DAY))
+    setElementInnerText("hours", Math.floor(diff % DAY / HOUR))
+    setElementInnerText("minutes", Math.floor(diff % HOUR / MINUTE))
+    setElementInnerText("seconds", Math.floor(diff % MINUTE / SECOND))
+    setElementInnerText("milliseconds", Math.floor(diff % SECOND))
   }
 
   function run() {
     countdown()
 
-    setInterval(() => {
-      countdown()
-    }, 1000)
+    setInterval(countdown, 1)
   }
 
   run()
