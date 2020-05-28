@@ -22,7 +22,7 @@
 
     context.lineCap = "round"
     context.lineJoin = "round"
-    context.lineWidth = 40
+    context.lineWidth = 40 * Math.random() / distance
 
     context.moveTo(previousPoint.x, previousPoint.y)
     context.lineTo(currentPoint.x, currentPoint.y)
