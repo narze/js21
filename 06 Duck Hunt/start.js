@@ -35,6 +35,17 @@
 
   function moveDuck(duckEl, duck) {
     const { left, top } = duckEl.getBoundingClientRect()
+    const outOfBoundX = duck.x < 0 || duck.x > window.innerWidth
+    const outOfBoundY = duck.y < 0 || duck.y > window.innerHeight
+
+    if (outOfBoundX) {
+      duck.speedX *= -1
+    }
+
+    if (outOfBoundY) {
+      duck.speedY *= -1
+    }
+
     duck.x = left + duck.speedX
     duck.y = top - duck.speedY
     duckEl.style.left = `${duck.x}px`
