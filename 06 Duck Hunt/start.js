@@ -59,6 +59,17 @@
     duckEl.style.transition = "top 1s"
     duckEl.style.top = `${window.innerHeight}px`
     clearInterval(duckEl.interval)
+
+    setTimeout(() => {
+      document.body.removeChild(duckEl)
+
+      const ducks = document.querySelector(".duck")
+
+      if (!ducks) {
+        const winningEl = document.querySelector(".winning")
+        winningEl.style.opacity = 1
+      }
+    }, 1000)
   }
 
   function run() {
