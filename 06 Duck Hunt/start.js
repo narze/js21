@@ -25,12 +25,22 @@
     return { duck, duckEl }
   }
 
+  function getDuckBackgroundImage(duck, duckEl) {
+    const direction = duck.speedX > 0 ? "right" : "left"
+
+    return duckEl.style.backgroundImage.indexOf("1") !== -1 ?
+      `url(./${direction}-2.png)` :
+      `url(./${direction}-1.png)`
+  }
+
   function moveDuck(duckEl, duck) {
     const { left, top } = duckEl.getBoundingClientRect()
     duck.x = left + duck.speedX
     duck.y = top - duck.speedY
     duckEl.style.left = `${duck.x}px`
     duckEl.style.top = `${duck.y}px`
+
+    duckEl.style.backgroundImage = getDuckBackgroundImage(duck, duckEl)
   }
 
   function run() {
