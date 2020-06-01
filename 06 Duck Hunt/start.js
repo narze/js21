@@ -54,13 +54,21 @@
     duckEl.style.backgroundImage = getDuckBackgroundImage(duck, duckEl)
   }
 
+  function shootDuck(event) {
+    const duckEl = event.target
+    duckEl.style.transition = "top 1s"
+    duckEl.style.top = `${window.innerHeight}px`
+    clearInterval(duckEl.interval)
+  }
+
   function run() {
     const ducks = createDucks()
 
     const duckElements = ducks.map(setupDuckElement)
 
     duckElements.forEach(({ duck, duckEl }) => {
-      setInterval(() => moveDuck(duckEl, duck), 100)
+      duckEl.interval = setInterval(() => moveDuck(duckEl, duck), 100)
+      duckEl.addEventListener("click", shootDuck)
     })
   }
 
